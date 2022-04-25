@@ -1,5 +1,4 @@
 // import { hmrPlugin, presets } from '@open-wc/dev-server-hmr';
-import { fromRollup } from '@web/dev-server-rollup';
 import { esbuildPlugin } from '@web/dev-server-esbuild';
 
 /** Use Hot Module replacement by adding --hmr to the start command */
