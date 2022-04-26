@@ -5,9 +5,12 @@ export default {
   title: 'KmapJsxGraph',
   component: 'kmap-jsxgraph',
   argTypes: {
-    title: { control: 'text' },
-    counter: { control: 'number' },
-    textColor: { control: 'color' },
+    boundingBox: { control: 'text' },
+    axis: { control: 'boolean' },
+    grid: { control: 'boolean' },
+    showNavigation: { control: 'boolean' },
+    showScreenshot: { control: 'boolean' },
+    showZoom: { control: 'boolean' },
   },
 };
 
@@ -18,51 +21,41 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  title?: string;
-  counter?: number;
-  textColor?: string;
-  slot?: string;
+  boundingBox?: string;
+  axis?: boolean;
+  grid?: boolean;
+  showNavigation?: boolean;
+  showScreenshot?: boolean;
+  showZoom?: boolean;
+  attributes?: string;
+  script?: string;
 }
 
 const Template: Story<ArgTypes> = ({
-  title = 'Sinus',
-  counter = 5,
-  textColor,
-  slot = "",
+  boundingBox = undefined,
+  axis = true,
+  grid = true,
+  showNavigation = false,
+  showScreenshot = false,
+  showZoom = false,
+  attributes = "{ boundingBox: [-2*Math.PI, 1.5, 2*Math.PI, -1.5] }",
+  script = "this.board.create('functiongraph', [function(x) { return Math.sin(x) }, -2*Math.PI, 2*Math.PI]);",
 }: ArgTypes) => html`
   <kmap-jsxgraph
-    style="--kmap-jsxgraph-text-color: ${textColor || 'black'}"
-    .title=${title}
-    .counter=${counter}
+    boundingBox="${boundingBox}"
+    ?axis="${axis}"
+    ?grid="${grid}"
+    ?show="${showNavigation}"
+    ?showScreenshot="${showScreenshot}"
+    ?showZoom="${showZoom}"
   >
     <script type="none" slot="attributes">
-      {
-        boundingBox: [-2*Math.PI, 1.5, 2*Math.PI, -1.5],
-      }
+      ${attributes}
     </script>
     <script type="none" slot="script">
-      this.board.create('functiongraph', [function(x) { return Math.sin(x) }, -2*Math.PI, 2*Math.PI]);
+      ${script}
     </script>
-    ${slot}
   </kmap-jsxgraph>
 `;
 
 export const Regular = Template.bind({});
-
-export const CustomTitle = Template.bind({});
-CustomTitle.args = {
-  title: 'My title',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 123456,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: "this.board.create('functiongraph', [function(x) { return Math.sin(x) }, -2*Math.PI, 2*Math.PI]);",
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
-};

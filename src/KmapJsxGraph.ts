@@ -12,19 +12,19 @@ export class KmapJsxGraph extends LitElement {
   @property({ type: Array })
   private boundingBox?: number[];
 
-  @property()
+  @property( { type: Boolean })
   private axis: boolean = true;
 
-  @property()
+  @property( { type: Boolean })
   private grid: boolean = true;
 
-  @property()
+  @property( { type: Boolean })
   private showScreenshot: boolean = false;
 
-  @property()
+  @property( { type: Boolean })
   private showNavigation: boolean = false;
 
-  @property()
+  @property( { type: Boolean })
   private showZoom: boolean = false;
 
   static styles = [
@@ -66,6 +66,12 @@ export class KmapJsxGraph extends LitElement {
     text = this.textFromSlot("script");
     if (text)
       new Function(text).call(this);
+  }
+
+  protected updated(_changedProperties: PropertyValues) {
+    if (_changedProperties.has("boundingBox")) {
+      this.board.setBoundingBox(this.boundingBox as [x1: number, y1: number, x2: number, y2: number])
+    }
   }
 
   render() {

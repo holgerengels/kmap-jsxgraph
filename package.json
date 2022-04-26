@@ -1,6 +1,6 @@
 {
   "name": "kmap-jsxgraph",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Embed jsxgraph as a web component",
   "license": "MIT",
   "author": "Holger Engels",

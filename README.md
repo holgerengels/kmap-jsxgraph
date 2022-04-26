@@ -15,7 +15,16 @@ npm i kmap-jsxgraph
   import 'kmap-jsxgraph/kmap-jsxgraph.js';
 </script>
 
-<kmap-jsxgraph></kmap-jsxgraph>
+<kmap-jsxgraph>
+  <script type="none" slot="attributes">
+      {
+        boundingBox: [-2*Math.PI, 1.5, 2*Math.PI, -1.5],
+      }
+    </script>
+  <script type="none" slot="script">
+      this.board.create('functiongraph', [function(x) { return Math.sin(x) }, -2*Math.PI, 2*Math.PI]);
+    </script>
+</kmap-jsxgraph>
 ```
 
 ## Linting and formatting
