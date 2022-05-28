@@ -5,62 +5,48 @@ import {Board, BoardAttributes, def} from "jsxgraph";
 import {property} from "lit/decorators.js";
 
 export class KmapJsxGraph extends LitElement {
+  private static _defaultAttributes: Partial<BoardAttributes> = {
+    axis: true,
+    keepAspectRatio: false,
+    showNavigation: false,
+    showScreenshot: false,
+    showZoom: false,
+    showCopyright: false,
+  };
+
   declare shadowRoot: ShadowRoot;
 
   board!: Board;
 
-  @property({ type: Array })
-  private boundingBox?: number[];
-
-  @property( { type: Boolean })
-  private axis: boolean = true;
-
-  @property( { type: Boolean })
-  private grid: boolean = true;
-
-  @property( { type: Boolean })
-  private showScreenshot: boolean = false;
-
-  @property( { type: Boolean })
-  private showNavigation: boolean = false;
-
-  @property( { type: Boolean })
-  private showZoom: boolean = false;
+  @property()
+  public valid?: boolean = false;
 
   static styles = [
     jsxgraphStyles,
     css`
     :host {
       display: block;
+      width: 100%;
+      aspect-ratio: 1;
     }
     #box {
-      width: 400px;
-      height: 200px;
+      width: 100%;
+      height: 100%;
+    }
+    .jxgbox {
+      border: none;
     }
   `];
 
   protected firstUpdated(_changedProperties: PropertyValues) {
-    const defaultAttributes: Partial<BoardAttributes> = {
-      boundingBox: this.boundingBox ? this.boundingBox as [x1: number, y1: number, x2: number, y2: number] : [-10,10,10,-10],
-      axis: this.axis,
-      grid: this.grid,
-      showNavigation: this.showNavigation,
-      showScreenshot: this.showScreenshot,
-      showZoom: this.showZoom,
-      showCopyright: false,
-    };
     let text = this.textFromSlot("attributes");
     const slotAttributes = text ? Function('"use strict";return (' + text + ')')() : {};
     const attributes: Partial<BoardAttributes> = {
-      ...defaultAttributes,
+      ...KmapJsxGraph._defaultAttributes,
       ...slotAttributes,
-      document: this.shadowRoot as unknown as Document
+      document: this.shadowRoot
     };
 
-    // @ts-ignore
-    this.shadowRoot.createElement = (...args: any[]) => this.shadowRoot.ownerDocument.createElement(args);
-    // @ts-ignore
-    this.shadowRoot.documentElement = this.shadowRoot.ownerDocument.documentElement;
     this.board = JXG.JSXGraph.initBoard('box', attributes);
 
     text = this.textFromSlot("script");
@@ -69,9 +55,6 @@ export class KmapJsxGraph extends LitElement {
   }
 
   protected updated(_changedProperties: PropertyValues) {
-    if (_changedProperties.has("boundingBox")) {
-      this.board.setBoundingBox(this.boundingBox as [x1: number, y1: number, x2: number, y2: number])
-    }
   }
 
   render() {
@@ -90,5 +73,14 @@ export class KmapJsxGraph extends LitElement {
       return node.textContent ? node.textContent : ''
     }).join('');
     return script ? script : undefined;
+  }
+
+  public init() {
+  }
+
+  public bark() {
+  }
+
+  public showAnswer() {
   }
 }

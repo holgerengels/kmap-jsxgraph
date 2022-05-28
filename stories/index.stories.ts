@@ -5,12 +5,6 @@ export default {
   title: 'KmapJsxGraph',
   component: 'kmap-jsxgraph',
   argTypes: {
-    boundingBox: { control: 'text' },
-    axis: { control: 'boolean' },
-    grid: { control: 'boolean' },
-    showNavigation: { control: 'boolean' },
-    showScreenshot: { control: 'boolean' },
-    showZoom: { control: 'boolean' },
   },
 };
 
@@ -21,34 +15,15 @@ interface Story<T> {
 }
 
 interface ArgTypes {
-  boundingBox?: string;
-  axis?: boolean;
-  grid?: boolean;
-  showNavigation?: boolean;
-  showScreenshot?: boolean;
-  showZoom?: boolean;
   attributes?: string;
   script?: string;
 }
 
 const Template: Story<ArgTypes> = ({
-  boundingBox = undefined,
-  axis = true,
-  grid = true,
-  showNavigation = false,
-  showScreenshot = false,
-  showZoom = false,
   attributes = "{ boundingBox: [-2*Math.PI, 1.5, 2*Math.PI, -1.5] }",
   script = "this.board.create('functiongraph', [function(x) { return Math.sin(x) }, -2*Math.PI, 2*Math.PI]);",
 }: ArgTypes) => html`
-  <kmap-jsxgraph
-    boundingBox="${boundingBox}"
-    ?axis="${axis}"
-    ?grid="${grid}"
-    ?show="${showNavigation}"
-    ?showScreenshot="${showScreenshot}"
-    ?showZoom="${showZoom}"
-  >
+  <kmap-jsxgraph style="width: 300px; aspect-ratio: 2">
     <script type="none" slot="attributes">
       ${attributes}
     </script>
