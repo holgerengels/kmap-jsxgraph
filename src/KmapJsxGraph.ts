@@ -18,9 +18,6 @@ export class KmapJsxGraph extends LitElement {
 
   board!: Board;
 
-  @property()
-  public valid?: boolean = false;
-
   static styles = [
     jsxgraphStyles,
     css`
@@ -82,5 +79,9 @@ export class KmapJsxGraph extends LitElement {
   }
 
   public showAnswer() {
+  }
+
+  public isValid(): boolean {
+    return true;
   }
 }
