@@ -2,26 +2,30 @@
 <html lang="en-GB">
 <head>
   <meta charset="utf-8">
-  <style>
-    body {
-      background: #fafafa;
-    }
-  </style>
+  <script type="module">
+    import '../dist/src/kmap-jsxgraph.js';
+  </script>
 </head>
 <body>
-  <div id="demo"></div>
-
-  <script type="module">
-    import { html, render } from 'lit';
-    import '../dist/src/kmap-jsxgraph.js';
-
-    const title = 'Hello owc World!';
-    render(
-      html`
-        <kmap-jsxgraph>        </kmap-jsxgraph>
-      `,
-      document.querySelector('#demo')
-    );
-  </script>
+  <kmap-jsxgraph style="width: 300px; aspect-ratio: 2">
+    <style>
+      .text {
+        color: green;
+        background-color: white;
+      }
+    </style>
+    <script type="none" slot="attributes">{ boundingBox: [-5, 5, 5, -5] }</script>
+    <script slot="script">
+      this.start = function() {
+        this.board.create('functiongraph', [(x) => x ** 2 - 2]);
+        var t = this.board.create('text', [-4.5, 4.5, () => term], {
+          fontSize: 1.3,
+          fontUnit: 'em',
+          color: '#D55E00',
+          cssClass: 'text'
+        });
+      }
+    </script>
+  </kmap-jsxgraph>
 </body>
 </html>

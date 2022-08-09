@@ -1,8 +1,8 @@
+import {html, css, LitElement, PropertyValues, unsafeCSS} from 'lit';
 import 'jsxgraph';
-import {html, css, LitElement, PropertyValues} from 'lit';
+import {Board, BoardAttributes} from "jsxgraph";
 import {jsxgraphStyles} from "./jsxgraph-css";
-import {Board, BoardAttributes, def} from "jsxgraph";
-import {property} from "lit/decorators.js";
+import {state} from "lit/decorators.js";
 
 export class KmapJsxGraph extends LitElement {
   private static _defaultAttributes: Partial<BoardAttributes> = {
@@ -17,6 +17,9 @@ export class KmapJsxGraph extends LitElement {
   declare shadowRoot: ShadowRoot;
 
   board!: Board;
+
+  @state()
+  private styles?: string;
 
   static styles = [
     jsxgraphStyles,
@@ -49,6 +52,8 @@ export class KmapJsxGraph extends LitElement {
     text = this.textFromSlot("script");
     if (text)
       new Function(text).call(this);
+
+    this.styles = this.textFromSlot("styles");
   }
 
   protected updated(_changedProperties: PropertyValues) {
@@ -56,7 +61,9 @@ export class KmapJsxGraph extends LitElement {
 
   render() {
     return html`
+      ${this.styles ? html`<style>${unsafeCSS(this.styles)}</style>`: ''}
       <div id="box" class="jxgbox"></div>
+      <slot name="styles" style="display: none"></slot>
       <slot name="attributes" style="display: none"></slot>
       <slot name="script" style="display: none"></slot>
     `;
