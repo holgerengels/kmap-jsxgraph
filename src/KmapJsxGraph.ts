@@ -51,7 +51,8 @@ export class KmapJsxGraph extends LitElement {
 
     text = this.textFromSlot("script");
     if (text)
-      new Function(text).call(this);
+      new Function('"use strict";\n' + text).call(this);
+      //new Function(text).call(this);
 
     this.styles = this.textFromSlot("styles");
   }

@@ -15,17 +15,17 @@ export const jsxgraphStyles: CSSResult = css`
     -webkit-border-radius: 10px;
     -ms-touch-action: none;
     /* "touch-action: none;" is set with JavaScript. */
-}
+  }
 
-.jxgbox svg text {
+  .jxgbox svg text {
     cursor: default;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
+  }
 
-.JXGtext {
+  .JXGtext {
     font-family: Courier, monospace;
     /*
      * The default font family is now set in
@@ -36,29 +36,30 @@ export const jsxgraphStyles: CSSResult = css`
     background-color: transparent;
     padding: 0;
     margin: 0;
-}
+  }
 
-.JXGinfobox {
+  .JXGinfobox {
     border-style: none;
     border-width: 0;
     border-color: black;
-}
+  }
 
-/* CSS attributes will (permantely) overwrite attributes set in JSXGraph */
-.JXGimage {
+  /* CSS attributes will (permantely) overwrite attributes set in JSXGraph */
+  .JXGimage {
     /* opacity: 1.0; */
-}
-.JXGimageHighlight {
+  }
+  .JXGimageHighlight {
     /* opacity: 0.6; */
-}
+  }
 
-.jxgbox :focus {
+  .jxgbox :focus {
     outline-width: 0.5px;
     outline-style: dotted;
-}
+  }
 
-/* CSS rules for the navigation bar */
-.JXG_navigation {
+  /* CSS rules for the navigation bar */
+
+  .JXG_navigation {
     position: absolute;
     right: 5px;
     bottom: 5px;
@@ -69,44 +70,105 @@ export const jsxgraphStyles: CSSResult = css`
     padding: 2px;
     font-size: 14px;
     cursor: pointer;
-}
+  }
 
-.JXG_navigation_button {
+  .JXG_navigation_button {
     color: #666;
-}
+  }
 
-.JXG_navigation_button:hover {
+  .JXG_navigation_button:hover {
     border-radius: 2px;
     background: rgba(184, 184, 184, 0.5);
-}
+  }
 
-/* CSS rules for the wrapping div in fullscreen mode */
+  .JXG_navigation_button svg {
+    top: 0.2em;
+    position: relative;
+    padding: 0;
+  }
 
-.JXG_wrap_private:-moz-full-screen {
+  /* CSS rules for the wrapping div in fullscreen mode */
+
+  .JXG_wrap_private:-moz-full-screen {
     background-color: #ccc;
     padding: 0;
     width: 100%;
     height: 100%;
-}
+  }
 
-.JXG_wrap_private:-webkit-full-screen {
+  .JXG_wrap_private:-webkit-full-screen {
     background-color: #ccc;
     padding: 0;
     width: 100%;
     height: 100%;
-}
+  }
 
-.JXG_wrap_private:fullscreen {
+  .JXG_wrap_private:fullscreen {
     background-color: #ccc;
     padding: 0;
     width: 100%;
     height: 100%;
-}
+  }
 
-.JXG_wrap_private:-ms-fullscreen {
+  .JXG_wrap_private:-ms-fullscreen {
     background-color: #ccc;
     padding: 0;
     width: 100%;
     height: 100%;
-}
+  }
+
+  /* Classes forn smartlabels */
+
+  .smart-label-solid {
+    padding: 1px 7px 1px 7px;
+    margin: 0px;
+    color: white !important;
+    border-radius: 150px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .smart-label-outline {
+    padding: 1px 7px 1px 7px;
+    margin: 0px;
+    border: solid 2px #000000;
+    background-color: #ffffff !important;
+    color: black !important;
+    border-radius: 15px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .smart-label-pure {
+    padding: 20px 7px 1px 7px;
+    margin: 0px;
+    border: none;
+    background-color: transparent !important;
+    color: black !important;
+    border-radius: 15px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .smart-label-line, .smart-label-point {
+    background-color: #0072B2;
+    border-color: #0072B2;
+  }
+
+  .smart-label-point {
+    margin-top: 12px;
+  }
+
+  .smart-label-angle {
+    background-color: #E69F00;
+    border-color: #E69F00;
+    padding: 1px 7px 1px 7px !important;
+  }
+
+  .smart-label-polygon, .smart-label-circle {
+    background-color: #F0E442;
+    color: #000000 !important;
+    border-color: #F0E442;
+    padding: 1px 7px 1px 7px !important;
+  }
 `;

@@ -1,6 +1,6 @@
 {
   "name": "kmap-jsxgraph",
-  "version": "0.9.14",
+  "version": "0.9.15",
   "description": "Embed jsxgraph as a web component",
   "license": "MIT",
   "author": "Holger Engels",
@@ -35,7 +35,7 @@
     "storybook:build": "tsc && build-storybook"
   },
   "dependencies": {
-    "jsxgraph": "^1.5.0",
+    "jsxgraph": "^1.6.0",
     "lit": "^2.5.0"
   },
   "devDependencies": {
