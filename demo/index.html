@@ -7,16 +7,17 @@
   </script>
 </head>
 <body>
-  <kmap-jsxgraph style="width: 100%; aspect-ratio: 6">
+  <kmap-jsxgraph style="width: 100%; aspect-ratio: 2">
     <style>
       .text {
         color: green;
         background-color: white;
       }
     </style>
-    <script type="none" slot="attributes">{ boundingBox: [-5, 5, 5, -5], showFullscreen: true }</script>
+    <script type="none" slot="attributes">{ boundingBox: [-5, 2.5, 5, -2.5], showFullscreen: true }</script>
     <script type="none" slot="script">
         this.board.create('functiongraph', [(x) => x ** 2 - 2]);
+        this.board.create('point', [2, 2], {strokeWidth: 2, face: '+', name: "\\pi", label: {useKatex: true}});
     </script>
   </kmap-jsxgraph>
 </body>
